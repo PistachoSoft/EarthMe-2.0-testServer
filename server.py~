@@ -1,5 +1,9 @@
 import os
+<<<<<<< HEAD
 from flask import Flask, request, redirect, url_for, jsonify, render_template, send_from_directory, abort
+=======
+from flask import Flask, request, redirect, url_for, jsonify, render_template, send_from_directory
+>>>>>>> 359d5afc95fef69603e9f23677a6eef194e640f3
 from werkzeug import secure_filename
 from flask.ext.cors import CORS
 from bson.json_util import dumps
@@ -16,13 +20,19 @@ def allowed_file(filename):
 
 @app.route("/api/upload", methods=['POST'])
 def upload_image():
-	file = request.files['file']
-	if file and allowed_file(file.filename):
-		filename = secure_filename(file.filename)
-		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-		return jsonify(filename=filename)
+	if request.method == 'POST':
+		file = request.files['file']
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			return jsonify(filename=filename)
+<<<<<<< HEAD
+		else:
+			abort(400)
 	else:
 		abort(400)
+=======
+>>>>>>> 359d5afc95fef69603e9f23677a6eef194e640f3
             #return redirect(url_for('uploaded_file', filename=filename))
 
 @app.route("/api/uploads/<filename>")
@@ -41,4 +51,8 @@ def internal_error(e):
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+>>>>>>> 359d5afc95fef69603e9f23677a6eef194e640f3
