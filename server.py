@@ -23,7 +23,6 @@ app = Flask(__name__, static_url_path='')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PROCESSED_FOLDER'] = PROCESSED_FOLDER
 cors = CORS(app, resources=r'/api/*', allow_headers='Content-Type')
->>>>>>> 67937bbe672c7fa28335b6264e703d28744bfb20
 
 # system's time, uuid attempt
 current_milli_time = lambda: int(round(time.time() * 1000))
@@ -70,5 +69,5 @@ def internal_error(e):
 
 
 if __name__ == "__main__":
-    EarthMe2.setup(gen_palette=True)
+    EarthMe2.setup(gen_palette=False)
     app.run()
