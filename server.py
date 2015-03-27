@@ -59,5 +59,5 @@ def internal_error(e):
 
 
 if __name__ == "__main__":
-    EarthMe2.setup()
+    EarthMe2.setup(gen_palette=True)
     app.run()
