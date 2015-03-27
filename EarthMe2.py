@@ -9,14 +9,8 @@ from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 import cv2
 from scipy.spatial.ckdtree import cKDTree
-from flask import Flask, request, send_from_directory, abort, render_template
-from werkzeug.utils import secure_filename
 import numpy as np
 
-"""
-    Main cKDTree, will contain all the images¿? or just the names of the dirs
-    to be considered ... whether this uses too much memory, the disk will be used
-"""
 __tree = cKDTree([(0, 0, 0)])
 __MAX_SIZE = 150
 __EARTH_IMG_EDGE = 50
@@ -63,14 +57,6 @@ def __max(x, y):
         return (y, x)
     else:
         return (x, y)
-
-
-# def allowed_file(filename):
-# """
-# Verifies whether the filename is allowed in ALLOWED_EXTENSIONS or not
-#     """
-#     return '.' in filename and \
-#            filename.rsplit('.', 1)[1] in _ALLOWED_EXTENSIONS
 
 
 def __gen_colors(dir):
@@ -204,7 +190,7 @@ def setup(gen_palette = False):
 
     __tree = cKDTree(__dummy)
 
-    # TODO: should be done randomly instead of sequentially
+    # palette generation, all the colors shuffled
     if gen_palette:
         bits_one = bin(__COLOR_MASK).count("1")
         shift = 8 - bits_one
@@ -219,14 +205,4 @@ def setup(gen_palette = False):
             if counter % 20 == 0:
                 print "filling up palette:",float(counter)/total*100,"%"
             __gen_colors(os.path.join(__PY_CLASS_DIR,__get_index_array(pixel)))
-    # print "TREE:",len(__tree.data)
-    # total = (2**bits_one)**3
-    # for i in range(2**bits_one):
-    #     for j in range(2**bits_one):
-    #         for k in range(2**bits_one):
-    #             counter += 1
-    #             if counter % 50 == 0:
-    #                 print "filling up palette:",float(counter)/total*100,"%"
-    #             __gen_colors(os.path.join(__PY_CLASS_DIR,__get_index_bgr(i << shift, j << shift, k << shift)))
-    # __TREEOP = __TREEOP.rebalance()
-    # app.run()
+
