@@ -1,0 +1,4 @@
+Flask==0.10.1
+Flask-Cors==1.10.2
+Jinja2==2.7.3
+cryptography==0.7.2
