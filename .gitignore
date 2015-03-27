@@ -1,6 +1,7 @@
 # Uploads folder
 server/uploads/
-venv
+venv/
+*.iml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
